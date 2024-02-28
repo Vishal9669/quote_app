@@ -1,0 +1,10 @@
+<p style="color: green"><%= notice %></p>
+
+<%= render @quote_template %>
+
+<div>
+  <%= link_to "Edit this quote template", edit_quote_template_path(@quote_template) %> |
+  <%= link_to "Back to quote templates", quote_templates_path %>
+
+  <%= button_to "Destroy this quote template", @quote_template, method: :delete %>
+</div>
