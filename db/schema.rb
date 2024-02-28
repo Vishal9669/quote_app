@@ -31,12 +31,8 @@ ActiveRecord::Schema[7.1].define(version: 2024_02_28_114732) do
   create_table "quotes", force: :cascade do |t|
     t.text "content"
     t.string "author"
-    t.string "image"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.bigint "person_id", null: false
-    t.index ["person_id"], name: "index_quotes_on_person_id"
   end
 
-  add_foreign_key "quotes", "people"
 end
