@@ -14,12 +14,12 @@
   <div>
     <%= form.label :image, style: "display: block" %>
     <%= form.text_field :image %>
-  </div>
+  </div><br>
 
   <div>
-    <%= form.label :quote_id, style: "display: block" %>
-    <%= form.number_field :quote_id %>
-  </div>
+    <%= form.label :quote_id, "Select Quote Id", style: "display: block" %>
+    <%= form.collection_select :quote_id, Quote.all, :id, :id, prompt: "Select Quote Id" %>
+  </div><br>
 
   <div>
     <%= form.submit %>

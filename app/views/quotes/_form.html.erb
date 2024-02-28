@@ -12,6 +12,11 @@
   <% end %>
 
   <div>
+    <%= form.label :person_id, "Select Person", style: "display: block" %>
+    <%= form.collection_select :person_id, Person.all, :id, :name, prompt: "Select Person" %>
+  </div>
+
+  <div>
     <%= form.label :content, style: "display: block" %>
     <%= form.text_area :content %>
   </div>
