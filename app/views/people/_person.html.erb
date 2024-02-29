@@ -1,12 +1,10 @@
 <div id="<%= dom_id person %>">
   <p>
-    <strong>Name:</strong>
     <%= person.name %>
   </p>
 
   <p>
-    <strong>Image:</strong>
-    <%= person.image %>
+    <%= link_to image_tag(person.image, style:"width:150px; height:150px"), person.image %>
   </p>
 
 </div>
