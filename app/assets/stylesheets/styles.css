@@ -1,0 +1,12 @@
+.person-container {
+  display: inline-block;
+  margin-right: 20px;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.show-link {
+  display: block;
+  margin-top: 10px;
+}

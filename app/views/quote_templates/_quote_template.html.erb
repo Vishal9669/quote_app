@@ -1,12 +1,11 @@
 <div id="<%= dom_id quote_template %>">
+
   <p>
-    <strong>Image:</strong>
-    <%= quote_template.image %>
+    <%= quote_template.quote_id %>
   </p>
 
   <p>
-    <strong>Quote:</strong>
-    <%= quote_template.quote_id %>
+    <%= link_to image_tag(quote_template.image, style:"width:150px; height:150px"), quote_template.image %>
   </p>
 
 </div>

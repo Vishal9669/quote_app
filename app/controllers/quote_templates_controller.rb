@@ -51,6 +51,6 @@ class QuoteTemplatesController < ApplicationController
   end
 
   def quote_template_params
-    params.require(:quote_template).permit(:image, :quote_id)
+    params.require(:quote_template).permit(:quote_id, :image)
   end
 end

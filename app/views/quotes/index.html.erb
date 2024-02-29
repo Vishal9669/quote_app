@@ -2,6 +2,8 @@
 
 <h1>Quotes</h1>
 
+<%= link_to "New quote", new_quote_path %>
+
 <div id="quotes">
   <% @quotes.each do |quote| %>
     <%= render quote %>
@@ -10,5 +12,3 @@
     </p>
   <% end %>
 </div>
-
-<%= link_to "New quote", new_quote_path %>
