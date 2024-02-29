@@ -53,7 +53,8 @@ ActiveRecord::Schema[7.1].define(version: 2024_02_29_102302) do
     t.string "author"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer "person_id"
+    t.bigint "person_id"
+    t.index ["person_id"], name: "index_quotes_on_person_id"
   end
 
   create_table "templates", force: :cascade do |t|
@@ -63,4 +64,5 @@ ActiveRecord::Schema[7.1].define(version: 2024_02_29_102302) do
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "quotes", "people"
 end
