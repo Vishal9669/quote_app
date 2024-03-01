@@ -2,7 +2,11 @@
 
 <h1>Quotes</h1>
 
-<%= link_to "New quote", new_quote_path %>
+<div>
+  <%= link_to "Back to people", people_path %>
+</div><br>
+
+<%= link_to "New quote", new_quote_path %><br>
 
 <div id="quotes">
   <% @quotes.each do |quote| %>

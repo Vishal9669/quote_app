@@ -3,8 +3,8 @@
 <h1>People</h1>
 
 <%= link_to "New person", new_person_path %><br>
-<%= link_to "New quote", new_quote_path %><br>
-<%= link_to "New template", new_template_path %><br><br>
+<%= link_to "Quote", quotes_path %><br>
+<%= link_to "Template", templates_path %><br><br>
 
 <div id="people">
   <% @people.each do |person| %>
