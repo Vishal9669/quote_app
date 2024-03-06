@@ -1,12 +1,7 @@
 <div id="<%= dom_id quote %>">
-  <p>
-    <strong>Content:</strong>
-    <%= quote.content %>
-  </p>
-
-  <p>
-    <strong>Author:</strong>
-    <%= quote.author %>
-  </p>
-
+  <% if quote.thumbnail.attached? %>
+    <%= image_tag quote.thumbnail %>
+  <% else %>
+    <p>No thumbnail available</p>
+  <% end %>
 </div>

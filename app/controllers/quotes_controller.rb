@@ -17,9 +17,10 @@ class QuotesController < ApplicationController
 
   def create
     @quote = Quote.new(quote_params)
+    generate_thumbnail
 
     respond_to do |format|
-      if @quote.save
+      if @quote.save!
         format.html { redirect_to quote_url(@quote), notice: "Quote was successfully created." }
       else
         format.html { render :new, status: :unprocessable_entity }
@@ -30,6 +31,7 @@ class QuotesController < ApplicationController
   def update
     respond_to do |format|
       if @quote.update(quote_params)
+        generate_thumbnail
         format.html { redirect_to quote_url(@quote), notice: "Quote was successfully updated." }
       else
         format.html { render :edit, status: :unprocessable_entity }
@@ -46,11 +48,16 @@ class QuotesController < ApplicationController
   end
 
   private
-    def set_quote
-      @quote = Quote.find(params[:id])
-    end
 
-    def quote_params
-      params.require(:quote).permit(:content, :author, :person_id)
-    end
+  def set_quote
+    @quote = Quote.find(params[:id])
+  end
+
+  def generate_thumbnail
+    GenerateThumbnailService.new(@quote, @quote.logo_path).call
+  end
+
+  def quote_params
+    params.require(:quote).permit(:content, :author, :person_id, :thumbnail, :logo_path)
+  end
 end
