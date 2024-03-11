@@ -27,10 +27,21 @@
   </div><br>
 
   <div>
-    <%= form.label :logo_path, "Select Logo" %>
-    <%= form.select :logo_path, options_for_select([["Mahatma Gandhi", "app/assets/images/mahatma_gandhi.png"], ["
-    Rabindranath Tagore", "app/assets/images/rabindranath_tagore.png"], ["
-    Gautama Buddha", "app/assets/images/gautama_buddha.png"]]) %>
+    <%= form.label :person_id, "Select Person Logo" %>
+    <% Person.all.each do |person| %>
+      <div>
+        <%= form.radio_button :logo_path, person.image %>
+        <%= form.label person.id do %>
+          <%= image_tag person.image, size: '80x80'%>
+          <%= person.name %>
+        <% end %>
+      </div>
+    <% end %>
+  </div><br>
+
+  <div id="template-selector">
+    <%= form.label :template, "Select Template" %>
+    <%= form.select :template, options_for_select([["Template 1", "app/assets/images/template_1.jpeg"], ["Template 2", "app/assets/images/template_2.jpeg"]]), {}, id: "quote_template" %>
   </div><br>
 
   <div>

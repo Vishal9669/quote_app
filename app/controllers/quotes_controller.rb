@@ -54,10 +54,10 @@ class QuotesController < ApplicationController
   end
 
   def generate_thumbnail
-    GenerateThumbnailService.new(@quote, @quote.logo_path).call
+    GenerateThumbnailService.new(@quote, @quote.logo_path, @quote.template).call
   end
 
   def quote_params
-    params.require(:quote).permit(:content, :author, :person_id, :thumbnail, :logo_path)
+    params.require(:quote).permit(:content, :author, :person_id, :thumbnail, :logo_path, :template)
   end
 end

@@ -32,6 +32,8 @@ gem "redis", ">= 4.0.1"
 #gem for image
 gem "image_processing", ">= 1.2"
 
+gem "rmagick", "~> 5.4"
+
 # Use Kredis to get higher-level data types in Redis [https://github.com/rails/kredis]
 # gem "kredis"
 
@@ -70,5 +72,3 @@ group :test do
   gem "capybara"
   gem "selenium-webdriver"
 end
-
-gem "rmagick", "~> 5.4"
