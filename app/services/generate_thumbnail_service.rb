@@ -2,17 +2,15 @@ class GenerateThumbnailService
   require 'RMagick2'
   include Magick
 
-  attr_reader :quote, :logo_path, :template
+  attr_reader :quote
 
-  def initialize(quote, logo_path, template)
+  def initialize(quote)
     @quote = quote
-    @logo_path = logo_path
-    @template = template
   end
 
   def call
     # Load the template image
-    template_image = Magick::ImageList.new(template)
+    template_image = Magick::ImageList.new(quote.template)
     template_image.resize!(1300, 600)
 
     # Load the logo image
@@ -45,16 +43,13 @@ class GenerateThumbnailService
       txt.gravity = Magick::CenterGravity
     end
 
-    # Write the final image to a file
-    filename = [quote.model_name.human, quote.id].join.downcase
-    image_path = Rails.root.join("app/assets/images/generator/#{filename}.png")
-    template_image.write(image_path)
+    # Convert the image to binary data
+    image_blob = template_image.to_blob { |img| img.format = 'PNG' }
 
-    # Attach the image to the quote's thumbnail
-    image_io = File.open(image_path)
-    quote.thumbnail.attach(io: image_io, filename: "#{filename}.png", content_type: 'image/png')
+    # Attach the image data to the quote's thumbnail
+    quote.thumbnail.attach(io: StringIO.new(image_blob), filename: "thumbnail.png", content_type: 'image/png')
 
     # Return the modified quote object
-    return quote
+    quote
   end
 end

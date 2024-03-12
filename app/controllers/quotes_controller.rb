@@ -16,11 +16,11 @@ class QuotesController < ApplicationController
   end
 
   def create
-    @quote = Quote.new(quote_params)
-    generate_thumbnail
+    @quote = build_quote_with_author_name
 
     respond_to do |format|
       if @quote.save!
+        generate_thumbnail
         format.html { redirect_to quote_url(@quote), notice: "Quote was successfully created." }
       else
         format.html { render :new, status: :unprocessable_entity }
@@ -54,7 +54,14 @@ class QuotesController < ApplicationController
   end
 
   def generate_thumbnail
-    GenerateThumbnailService.new(@quote, @quote.logo_path, @quote.template).call
+    GenerateThumbnailService.new(@quote).call
+  end
+
+  def build_quote_with_author_name
+    quote = Quote.new(quote_params)
+    person = Person.find_by(id: quote.person_id)
+    quote.author = "-#{person.name}" if person
+    quote
   end
 
   def quote_params

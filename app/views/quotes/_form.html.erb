@@ -22,11 +22,6 @@
   </div>
 
   <div>
-    <%= form.label :author, style: "display: block" %>
-    <%= form.text_field :author %>
-  </div><br>
-
-  <div>
     <%= form.label :person_id, "Select Person Logo" %>
     <% Person.all.each do |person| %>
       <div>
@@ -41,7 +36,7 @@
 
   <div id="template-selector">
     <%= form.label :template, "Select Template" %>
-    <%= form.select :template, options_for_select([["Template 1", "app/assets/images/template_1.jpeg"], ["Template 2", "app/assets/images/template_2.jpeg"]]), {}, id: "quote_template" %>
+    <%= form.select :template, options_for_select([["Template 1", "app/assets/images/template_1.jpeg"], ["Template 2", "app/assets/images/template_2.jpeg"], ["Template 3", "app/assets/images/template_3.jpeg"], ["Template 4", "app/assets/images/template_4.png"]]), {}, id: "quote_template" %>
   </div><br>
 
   <div>
