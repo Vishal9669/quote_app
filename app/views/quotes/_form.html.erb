@@ -35,8 +35,15 @@
   </div><br>
 
   <div id="template-selector">
-    <%= form.label :template, "Select Template" %>
-    <%= form.select :template, options_for_select([["Template 1", "app/assets/images/template_1.jpeg"], ["Template 2", "app/assets/images/template_2.jpeg"], ["Template 3", "app/assets/images/template_3.jpeg"], ["Template 4", "app/assets/images/template_4.png"]]), {}, id: "quote_template" %>
+    <%= form.label :template_id, "Select Template" %>
+    <% @templates.each do |template| %>
+      <div>
+        <%= form.radio_button :template_id, template.id %>
+        <%= form.label template.id do %>
+          <%= image_tag template.picture, size: '80x80'%>
+        <% end %>
+      </div>
+    <% end %>
   </div><br>
 
   <div>

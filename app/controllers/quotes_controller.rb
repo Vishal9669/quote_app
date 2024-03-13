@@ -1,5 +1,6 @@
 class QuotesController < ApplicationController
   before_action :set_quote, only: %i[ show edit update destroy ]
+  before_action :load_templates, only: [:new, :edit]
 
   def index
     @quotes = Quote.all
@@ -59,9 +60,14 @@ class QuotesController < ApplicationController
 
   def build_quote_with_author_name
     quote = Quote.new(quote_params)
+    quote.template = params[:quote][:template_id]
     person = Person.find_by(id: quote.person_id)
     quote.author = "-#{person.name}" if person
     quote
+  end
+
+  def load_templates
+    @templates = Template.all
   end
 
   def quote_params

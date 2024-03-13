@@ -3,5 +3,5 @@ class Quote < ApplicationRecord
   belongs_to :person
 
   validates :content, presence: true, length: { maximum: 500 }
-  validates :person_id, presence: true
+  validates :person_id, :template, presence: true
 end

@@ -46,11 +46,12 @@ class TemplatesController < ApplicationController
   end
 
   private
-    def set_template
-      @template = Template.find(params[:id])
-    end
 
-    def template_params
-      params.require(:template).permit(pictures: [])
-    end
+  def set_template
+    @template = Template.find(params[:id])
+  end
+
+  def template_params
+    params.require(:template).permit(:picture)
+  end
 end

@@ -10,8 +10,10 @@ class GenerateThumbnailService
 
   def call
     # Load the template image
-    template_image = Magick::ImageList.new(quote.template)
-    template_image.resize!(1300, 600)
+    template = Template.find(quote.template)
+    template_url = Rails.application.routes.url_helpers.url_for(template.picture)
+    template_image = Magick::Image.read(template_url).first
+    template_image.resize!(1200, 500)
 
     # Load the logo image
     logo_url = Rails.application.routes.url_helpers.url_for(quote.person.image)
