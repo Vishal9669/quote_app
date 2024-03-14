@@ -3,8 +3,7 @@
 <%= render @person %>
 
 <div>
-  <%= link_to "Edit this person", edit_person_path(@person) %> |
-  <%= link_to "Back to people", people_path %>
-
-  <%= button_to "Destroy this person", @person, method: :delete %>
+  <button onclick="location.href='<%= edit_person_path(@person) %>';">Edit Person</button>&nbsp;
+  <button onclick="location.href='<%= people_path %>';">Back To People</button><br>&nbsp;
+  <%= button_to "Destroy Person", @person, method: :delete %>
 </div>

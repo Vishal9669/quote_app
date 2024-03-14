@@ -3,16 +3,16 @@
 <h1>Templates</h1>
 
 <div>
-  <%= link_to "Back to people", people_path %>
+  <button onclick="location.href='<%= people_path %>';">Back To People</button>
 </div><br>
 
-<%= link_to "New template", new_template_path %><br>
+<button onclick="location.href='<%= new_template_path %>';">Add Template</button><br><br>
 
 <div id="templates">
   <% @templates.each do |template| %>
     <%= render template %>
     <p>
-      <%= link_to "Show this template", template %>
+      <button onclick="location.href='<%= template_path(template) %>';">Show Template</button>
     </p>
   <% end %>
 </div>

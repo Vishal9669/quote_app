@@ -3,8 +3,7 @@
 <%= render @template %>
 
 <div>
-  <%= link_to "Edit this template", edit_template_path(@template) %> |
-  <%= link_to "Back to templates", templates_path %>
-
-  <%= button_to "Destroy this template", @template, method: :delete %>
+  <button onclick="location.href='<%= edit_template_path(@template) %>';">Edit Template</button>&nbsp;
+  <button onclick="location.href='<%= templates_path %>';">Back To Templates</button><br>&nbsp;
+  <%= button_to "Destroy Template", @template, method: :delete %>
 </div>

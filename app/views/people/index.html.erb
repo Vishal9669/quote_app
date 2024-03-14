@@ -2,16 +2,16 @@
 
 <h1>People</h1>
 
-<%= link_to "New person", new_person_path %><br>
-<%= link_to "Quote", quotes_path %><br>
-<%= link_to "Template", templates_path %><br><br>
+<button onclick="location.href='<%= new_person_path %>'">Person</button>&nbsp;
+<button onclick="location.href='<%= quotes_path %>'">Quote</button>&nbsp;
+<button onclick="location.href='<%= templates_path %>'">Template</button><br><br>
 
 <div id="people">
   <% @people.each do |person| %>
     <div class="person-container">
       <%= render person %>
       <p>
-        <%= link_to "Show this person", person %>
+        <button onclick="location.href='<%= person_path(person) %>';">Show Person</button>
       </p>
     </div>
   <% end %>

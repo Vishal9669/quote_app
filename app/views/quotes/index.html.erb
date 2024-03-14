@@ -3,16 +3,16 @@
 <h1>Quotes</h1>
 
 <div>
-  <%= link_to "Back to people", people_path %>
+  <button onclick="location.href='<%= people_path %>';">Back To People</button>
 </div><br>
 
-<%= link_to "New quote", new_quote_path %><br>
+<button onclick="location.href='<%= new_quote_path %>';">Add Quote</button><br><br>
 
 <div id="quotes">
   <% @quotes.each do |quote| %>
     <%= render quote %>
     <p>
-      <%= link_to "Show this quote", quote %>
+      <button onclick="location.href='<%= quote_path(quote) %>';">Show Quote</button>
     </p>
   <% end %>
 </div>

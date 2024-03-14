@@ -1,9 +1,7 @@
-<h1>New quote</h1>
+<h1>Add Quote</h1>
 
-<%= render "form", quote: @quote %>
-
-<br>
+<%= render "form", quote: @quote %><br>
 
 <div>
-  <%= link_to "Back to quotes", quotes_path %>
+  <button onclick="location.href='<%= quotes_path %>';">Back To Quotes</button>
 </div>

@@ -1,10 +1,8 @@
-<h1>Editing template</h1>
+<h1>Edit Template</h1>
 
-<%= render "form", template: @template %>
-
-<br>
+<%= render "form", template: @template %><br>
 
 <div>
-  <%= link_to "Show this template", @template %> |
-  <%= link_to "Back to templates", templates_path %>
+  <button onclick="location.href='<%= template_path(@template) %>';">Show Template</button>&nbsp;
+  <button onclick="location.href='<%= templates_path %>';">Back To Templates</button>
 </div>

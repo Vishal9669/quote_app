@@ -3,8 +3,7 @@
 <%= render @quote %>
 
 <div>
-  <%= link_to "Edit this quote", edit_quote_path(@quote) %> |
-  <%= link_to "Back to quotes", quotes_path %>
-
-  <%= button_to "Destroy this quote", @quote, method: :delete %>
+  <button onclick="location.href='<%= edit_quote_path(@quote) %>';">Edit Quote</button>&nbsp;
+  <button onclick="location.href='<%= quotes_path %>';">Back To Quotes</button><br>&nbsp;
+  <%= button_to "Destroy Quote", @quote, method: :delete %>
 </div>
