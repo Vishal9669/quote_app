@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_03_07_095614) do
+ActiveRecord::Schema[7.1].define(version: 2024_03_14_110024) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -56,6 +56,9 @@ ActiveRecord::Schema[7.1].define(version: 2024_03_07_095614) do
     t.datetime "updated_at", null: false
     t.bigint "person_id"
     t.string "template"
+    t.integer "text_pointsize"
+    t.string "text_font"
+    t.string "text_fill"
     t.index ["person_id"], name: "index_quotes_on_person_id"
   end
 

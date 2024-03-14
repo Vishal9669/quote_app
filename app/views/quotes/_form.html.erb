@@ -19,7 +19,50 @@
   <div>
     <%= form.label :content, style: "display: block" %>
     <%= form.text_area :content %>
-  </div>
+  </div><br>
+
+  <div>
+    <%= form.label :text_pointsize, "Select Text Size" %>
+    <%= form.number_field :text_pointsize, min: 1, max: 50, step: 1 %>
+  </div><br>
+
+  <div>
+    <%= form.label :text_font, "Select Text Font Style" %>
+    <%= form.collection_select :text_font,
+                              [['Arial', 'Arial'],
+                              ['Times New Roman', 'Times New Roman'],
+                              ['Verdana', 'Verdana'],
+                              ['Helvetica', 'Helvetica'],
+                              ['Georgia', 'Georgia'],
+                              ['Courier New', 'Courier New'],
+                              ['Tahoma', 'Tahoma'],
+                              ['Palatino', 'Palatino'],
+                              ['Lucida Sans', 'Lucida Sans'],
+                              ['Garamond', 'Garamond'],
+                              ['Bookman', 'Bookman'],
+                              ['Trebuchet MS', 'Trebuchet MS']],
+                             :last, :first,
+                             prompt: "Select Font Style" %>
+  </div><br>
+
+  <div>
+    <%= form.label :text_fill, "Select Text Color" %>
+    <%= form.collection_select :text_fill,
+                              [['Red', 'red'],
+                              ['Blue', 'blue'],
+                              ['Green', 'green'],
+                              ['Black', 'black'],
+                              ['White', 'white'],
+                              ['Yellow', 'yellow'],
+                              ['Orange', 'orange'],
+                              ['Purple', 'purple'],
+                              ['Pink', 'pink'],
+                              ['Gray', 'gray'],
+                              ['Brown', 'brown'],
+                              ['Cyan', 'cyan']],
+                             :last, :first,
+                             prompt: "Select Color" %>
+  </div><br>
 
   <div>
     <%= form.label :person_id, "Select Person Logo" %>

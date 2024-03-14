@@ -30,18 +30,18 @@ class GenerateThumbnailService
     # Add text to the template image
     text = Magick::Draw.new
     text.annotate(template_image, 0, 0, 0, 0, quote.content) do |txt|
-      txt.pointsize = 25
+      txt.pointsize = quote.text_pointsize
       txt.font_weight = Magick::BoldWeight
-      txt.font = 'Arial'
-      txt.fill = 'blue'
+      txt.font = quote.text_font
+      txt.fill = quote.text_fill
       txt.gravity = Magick::CenterGravity
     end
 
     text.annotate(template_image, 0, 0, 200, 60, quote.author) do |txt|
-      txt.pointsize = 15
+      txt.pointsize = quote.text_pointsize
       txt.font_weight = Magick::BoldWeight
-      txt.font = 'Arial'
-      txt.fill = 'red'
+      txt.font = quote.text_font
+      txt.fill = quote.text_fill
       txt.gravity = Magick::CenterGravity
     end
 

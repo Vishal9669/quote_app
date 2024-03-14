@@ -60,6 +60,7 @@ class QuotesController < ApplicationController
 
   def build_quote_with_author_name
     quote = Quote.new(quote_params)
+    set_default_values_for_quote_text(quote)
     quote.template = params[:quote][:template_id]
     person = Person.find_by(id: quote.person_id)
     quote.author = "-#{person.name}" if person
@@ -70,7 +71,13 @@ class QuotesController < ApplicationController
     @templates = Template.all
   end
 
+  def set_default_values_for_quote_text(quote)
+    quote.text_pointsize = quote.text_pointsize.present? ? quote.text_pointsize : 25
+    quote.text_font = quote.text_font.present? ? quote.text_font : 'Arial'
+    quote.text_fill = quote.text_fill.present? ? quote.text_fill : 'blue'
+  end
+
   def quote_params
-    params.require(:quote).permit(:content, :author, :person_id, :thumbnail, :logo_path, :template)
+    params.require(:quote).permit(:content, :author, :person_id, :thumbnail, :logo_path, :template, :text_pointsize, :text_font, :text_fill)
   end
 end
