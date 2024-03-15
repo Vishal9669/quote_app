@@ -103,6 +103,25 @@
   </div><br>
 
   <div>
+    <%= form.label :template_size, "Select Template Size" %><br>
+    <%= form.collection_select :template_size,
+                             [['500 x 300', '500x300'],
+                              ['600 x 400', '600x400'],
+                              ['700 x 500', '700x500'],
+                              ['800 x 600', '800x600'],
+                              ['900 x 500', '900x500'],
+                              ['1000 x 500', '1000x500'],
+                              ['1100 x 500', '1100x500'],
+                              ['1200 x 500', '1200x500'],
+                              ['1300 x 500', '1300x500'],
+                              ['1024 x 768', '1024x768'],
+                              ['1250 x 720', '1250x720'],
+                              ['1300 x 768', '1300x768'],
+                              ['1350 x 800', '1350x800']],
+                             :last, :first, prompt: "Select Template Size" %>
+  </div><br>
+
+  <div>
     <%= form.submit %>
   </div>
 <% end %>
