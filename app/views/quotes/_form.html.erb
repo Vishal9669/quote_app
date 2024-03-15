@@ -77,6 +77,19 @@
     <% end %>
   </div><br>
 
+  <div>
+    <%= form.label :logo_position, "Select Logo Position" %><br>
+    <%= form.collection_select :logo_position, [['Top Right', 'top_right'],
+                                              ['Top Center', 'top_center'],
+                                              ['Top Left', 'top_left'],
+                                              ['Right Center', 'right_center'],
+                                              ['Bottom Right', 'bottom_right'],
+                                              ['Bottom Center', 'bottom_center'],
+                                              ['Bottom Left', 'bottom_left'],
+                                              ['Left Center', 'left_center'],
+                                              ['Center', 'center']], :last, :first, prompt: "Select Logo Position" %>
+  </div><br>
+
   <div id="template-selector">
     <%= form.label :template_id, "Select Template" %>
     <% @templates.each do |template| %>

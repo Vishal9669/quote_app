@@ -62,6 +62,7 @@ class QuotesController < ApplicationController
     quote = Quote.new(quote_params)
     set_default_values_for_quote_text(quote)
     quote.template = params[:quote][:template_id]
+    quote.logo_position = params[:quote][:logo_position]
     person = Person.find_by(id: quote.person_id)
     quote.author = "-#{person.name}" if person
     quote
@@ -78,6 +79,6 @@ class QuotesController < ApplicationController
   end
 
   def quote_params
-    params.require(:quote).permit(:content, :author, :person_id, :thumbnail, :logo_path, :template, :text_pointsize, :text_font, :text_fill)
+    params.require(:quote).permit(:content, :author, :person_id, :thumbnail, :logo_path, :template, :text_pointsize, :text_font, :text_fill, :logo_position)
   end
 end
