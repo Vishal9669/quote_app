@@ -65,20 +65,7 @@
   </div><br>
 
   <div>
-    <%= form.label :person_id, "Select Person Logo" %>
-    <% Person.all.each do |person| %>
-      <div>
-        <%= form.radio_button :logo_path, person.image %>
-        <%= form.label person.id do %>
-          <%= image_tag person.image, size: '80x80'%>
-          <%= person.name %>
-        <% end %>
-      </div>
-    <% end %>
-  </div><br>
-
-  <div>
-    <%= form.label :logo_position, "Select Logo Position" %><br>
+    <%= form.label :logo_position, "Select Person Logo Position" %><br>
     <%= form.collection_select :logo_position, [['Top Right', 'top_right'],
                                               ['Top Center', 'top_center'],
                                               ['Top Left', 'top_left'],
@@ -91,10 +78,10 @@
   </div><br>
 
   <div id="template-selector">
-    <%= form.label :template_id, "Select Template" %>
+    <%= form.label :template, "Select Template" %>
     <% @templates.each do |template| %>
       <div>
-        <%= form.radio_button :template_id, template.id %>
+        <%= form.radio_button :template, template.id %>
         <%= form.label template.id do %>
           <%= image_tag template.picture, size: '80x80'%>
         <% end %>

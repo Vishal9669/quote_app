@@ -32,7 +32,16 @@ class QuotesController < ApplicationController
   def update
     respond_to do |format|
       if @quote.update(quote_params)
-        generate_thumbnail
+        # Update author name if person_id has changed
+        if quote_params[:person_id] != @quote.person_id
+          update_author_name
+        end
+
+        # Regenerate thumbnail if template_id has changed
+        if quote_params[:template] != @quote.template
+          generate_thumbnail
+        end
+
         format.html { redirect_to quote_url(@quote), notice: "Quote was successfully updated." }
       else
         format.html { render :edit, status: :unprocessable_entity }
@@ -61,7 +70,7 @@ class QuotesController < ApplicationController
   def build_quote_with_author_name
     quote = Quote.new(quote_params)
     set_default_values_for_quote_text(quote)
-    quote.template = params[:quote][:template_id]
+    quote.template = params[:quote][:template]
     quote.logo_position = params[:quote][:logo_position]
     quote.template_size = params[:quote][:template_size]
     person = Person.find_by(id: quote.person_id)
@@ -77,6 +86,11 @@ class QuotesController < ApplicationController
     quote.text_pointsize = quote.text_pointsize.present? ? quote.text_pointsize : 25
     quote.text_font = quote.text_font.present? ? quote.text_font : 'Arial'
     quote.text_fill = quote.text_fill.present? ? quote.text_fill : 'blue'
+  end
+
+  def update_author_name
+    person = Person.find_by(id: @quote.person_id)
+    @quote.update(author: "-#{person.name}") if person
   end
 
   def quote_params
