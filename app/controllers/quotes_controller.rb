@@ -17,7 +17,7 @@ class QuotesController < ApplicationController
   end
 
   def create
-    @quote = build_quote_with_author_name
+    @quote = build_quote_with_defaults_and_author_name
 
     respond_to do |format|
       if @quote.save!
@@ -67,12 +67,23 @@ class QuotesController < ApplicationController
     GenerateThumbnailService.new(@quote).call
   end
 
-  def build_quote_with_author_name
+  def build_quote_with_defaults_and_author_name
+    # Create a new quote object with permitted parameters
     quote = Quote.new(quote_params)
+    # Set default values for text properties
     set_default_values_for_quote_text(quote)
+    # Set the selected template
     quote.template = params[:quote][:template]
+    # Set the selected logo position
     quote.logo_position = params[:quote][:logo_position]
+    # Set default logo position if none selected
+    quote.logo_position = params[:quote][:logo_position].present? ? params[:quote][:logo_position] : 'bottom_right'
+    # Set the selected template size
     quote.template_size = params[:quote][:template_size]
+    # Set default template size if none selected
+    quote.template_size = params[:quote][:template_size].present? ? params[:quote][:template_size] : '1300x500'
+
+    # Find the associated person and append their name to the author field
     person = Person.find_by(id: quote.person_id)
     quote.author = "-#{person.name}" if person
     quote
