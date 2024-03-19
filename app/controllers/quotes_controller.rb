@@ -20,7 +20,8 @@ class QuotesController < ApplicationController
     @quote = build_quote_with_defaults_and_author_name
 
     respond_to do |format|
-      if @quote.save!
+
+      if @quote.save
         generate_thumbnail
         format.html { redirect_to quote_url(@quote), notice: "Quote was successfully created." }
       else

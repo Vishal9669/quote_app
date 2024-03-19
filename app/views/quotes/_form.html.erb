@@ -79,15 +79,20 @@
 
   <div id="template-selector">
     <%= form.label :template, "Select Template" %>
-    <% @templates.each do |template| %>
-      <div>
-        <%= form.radio_button :template, template.id %>
-        <%= form.label template.id do %>
-          <%= image_tag template.picture, size: '80x80'%>
-        <% end %>
-      </div>
+    <% if @templates.present? %>
+      <% @templates.each do |template| %>
+        <div>
+          <%= form.radio_button :template, template.id %>
+          <%= form.label template.id do %>
+            <%= image_tag template.picture, size: '80x80'%>
+          <% end %>
+        </div>
+      <% end %>
+    <% else %>
+      <p>No templates available.</p>
     <% end %>
   </div><br>
+
 
   <div>
     <%= form.label :template_size, "Select Template Size" %><br>
