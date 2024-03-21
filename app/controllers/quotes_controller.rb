@@ -3,7 +3,12 @@ class QuotesController < ApplicationController
   before_action :load_templates, only: [:new, :edit]
 
   def index
-    @quotes = Quote.all
+    @quotes = if params[:category].present? && params[:category] != "All"
+      Quote.where(category: params[:category].downcase)
+    else
+      Quote.all.order(created_at: :desc)
+    end
+    @categories = Quote.distinct.pluck(:category).compact.map(&:capitalize)
   end
 
   def show
@@ -83,6 +88,8 @@ class QuotesController < ApplicationController
     quote.template_size = params[:quote][:template_size]
     # Set default template size if none selected
     quote.template_size = params[:quote][:template_size].present? ? params[:quote][:template_size] : '1300x500'
+    #set the category for quote
+    quote.category = params[:quote][:category]
 
     # Find the associated person and append their name to the author field
     person = Person.find_by(id: quote.person_id)
@@ -106,6 +113,6 @@ class QuotesController < ApplicationController
   end
 
   def quote_params
-    params.require(:quote).permit(:content, :author, :person_id, :thumbnail, :logo_path, :template, :text_pointsize, :text_font, :text_fill, :logo_position, :template_size)
+    params.require(:quote).permit(:content, :author, :person_id, :thumbnail, :logo_path, :template, :text_pointsize, :text_font, :text_fill, :logo_position, :template_size, :category)
   end
 end

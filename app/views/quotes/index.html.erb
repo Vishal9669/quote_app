@@ -8,11 +8,32 @@
 
 <button onclick="location.href='<%= new_quote_path %>';">Add Quote</button><br><br>
 
-<div id="quotes">
-  <% @quotes.each do |quote| %>
-    <%= render quote %>
-    <p>
-      <button onclick="location.href='<%= quote_path(quote) %>';">Show Quote</button>
-    </p>
+<% if @categories.present? %>
+  <%= form_tag(quotes_path, method: "get") do %>
+    <%= select_tag :category, options_for_select(['All'] + @categories.map(&:capitalize)), prompt: "Select Quote Category" %>
+    <%= submit_tag "Search" %>
   <% end %>
-</div>
+<% end %>
+
+<% if params[:category].present? && params[:category] != "All" %>
+  <% selected_category = params[:category].downcase %>
+  <h2><%= selected_category.capitalize %> Quotes</h2>
+  <div id="<%= selected_category %>-quotes">
+    <% @quotes.each do |quote| %>
+      <%= render quote %>
+      <p>
+        <button onclick="location.href='<%= quote_path(quote) %>';">Show Quote</button>
+      </p>
+    <% end %>
+  </div>
+<% else %>
+  <h2>All Quotes</h2>
+  <div id="all-quotes">
+    <% @quotes.each do |quote| %>
+      <%= render quote %>
+      <p>
+        <button onclick="location.href='<%= quote_path(quote) %>';">Show Quote</button>
+      </p>
+    <% end %>
+  </div>
+<% end %>

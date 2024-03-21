@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_03_18_124128) do
+ActiveRecord::Schema[7.1].define(version: 2024_03_20_103820) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -60,6 +60,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_03_18_124128) do
     t.integer "template"
     t.string "logo_position"
     t.string "template_size"
+    t.string "category"
     t.index ["person_id"], name: "index_quotes_on_person_id"
   end
 
